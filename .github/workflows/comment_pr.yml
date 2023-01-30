@@ -1,8 +1,7 @@
 name: Trigger Prototype Workflow by Comment
 
 on:
-  issue_comment:                                     
-    types: [created]
+  push
 
 jobs:
   trigger_prototype_workflow_by_comment:
