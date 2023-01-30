@@ -6,7 +6,6 @@ on:
 jobs:
   trigger_prototype_workflow_by_comment:
     name: Trigger Prototype Workflow by Comment
-    if: ${{ github.event.issue.pull_request }}
     runs-on: ubuntu-latest
     env:
       CIRCLECI_TOKEN: ${{ secrets.CIRCLECI_TOKEN }}
