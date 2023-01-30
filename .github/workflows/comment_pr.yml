@@ -1,4 +1,4 @@
-name: Trigger Prototype Workflow by Commit
+name: Trigger Prototype Workflow by Comment
 
 on:
   issue_comment:                                     
@@ -17,4 +17,4 @@ jobs:
           fetch-depth: '0'
       - name: Trigger Prototype Workflow 
         run: |
-          echo "ASU ECHO6"
+          echo "ASU ECHO7"
