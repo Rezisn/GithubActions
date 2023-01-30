@@ -1,8 +1,10 @@
 name: Trigger Prototype Workflow by Comment
 
 on:
-  issue_comment:                                     
-    types: [push]
+  push:
+    branches-ignore:
+      - 'develop'
+      - 'releases/**'
 
 jobs:
   trigger_prototype_workflow_by_comment:
