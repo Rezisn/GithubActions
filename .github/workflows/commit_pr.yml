@@ -1,10 +1,7 @@
-name: Trigger Prototype Workflow by Comment
+name: Trigger Prototype Workflow by Commit
 
 on:
-  push:
-    branches-ignore:
-      - 'develop'
-      - 'releases/**'
+  push
 
 jobs:
   trigger_prototype_workflow_by_comment:
