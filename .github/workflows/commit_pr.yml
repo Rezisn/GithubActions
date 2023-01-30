@@ -1,13 +1,12 @@
-name: Trigger Prototype Workflow by Comment
+name: Trigger Prototype Workflow by Commit
 
 on:
-  issue_comment:                                     
-    types: [created]
+  push
 
 jobs:
   trigger_prototype_workflow_by_comment:
     name: Trigger Prototype Workflow by Comment
-    if: ${{ github.event.issue.pull_request && contains(github.event.comment.body, '/build_prototype_app') }} 
+    if: ${{ github.event.issue.pull_request && contains(github.event.issue.labels.*.name, 'prototype-workflow-integration') }}
     runs-on: ubuntu-latest
     env:
       CIRCLECI_TOKEN: ${{ secrets.CIRCLECI_TOKEN }}
@@ -18,4 +17,4 @@ jobs:
           fetch-depth: '0'
       - name: Trigger Prototype Workflow 
         run: |
-          echo "ASU ECHO7"
+          echo "ASU ECHO2"
