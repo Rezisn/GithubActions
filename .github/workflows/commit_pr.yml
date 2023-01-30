@@ -1,0 +1,21 @@
+name: Trigger Prototype Workflow by Comment
+
+on:
+  issue_comment:                                     
+    types: [push]
+
+jobs:
+  trigger_prototype_workflow_by_comment:
+    name: Trigger Prototype Workflow by Comment
+    if: ${{ github.event.issue.pull_request && contains(github.event.issue.labels.*.name, 'prototype-workflow-integration') }}
+    runs-on: ubuntu-latest
+    env:
+      CIRCLECI_TOKEN: ${{ secrets.CIRCLECI_TOKEN }}
+    steps:
+      - name: Git checkout
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: '0'
+      - name: Trigger Prototype Workflow 
+        run: |
+          echo "ASU ECHO2"
