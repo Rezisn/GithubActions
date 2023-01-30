@@ -1,12 +1,12 @@
 name: Trigger Prototype Workflow by Comment
 
 on:
-  push
+  issue_comment:                                     
+    types: [created]
 
 jobs:
   trigger_prototype_workflow_by_comment:
     name: Trigger Prototype Workflow by Comment
-    if: ${{ github.event.issue.pull_request }} && contains(github.event.comment.body, '/build_prototype_app')
     runs-on: ubuntu-latest
     env:
       CIRCLECI_TOKEN: ${{ secrets.CIRCLECI_TOKEN }}
