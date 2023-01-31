@@ -11,11 +11,19 @@ jobs:
     runs-on: ubuntu-latest
     env:
       CIRCLECI_TOKEN: ${{ secrets.CIRCLECI_TOKEN }}
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
-      - name: Git checkout
+      - name: Git Checkout
         uses: actions/checkout@v2
-        with:
-          fetch-depth: '0'
-      - name: Trigger Prototype Workflow 
+      - name: Checkout Pull Request
         run: |
-          echo ${GITHUB_REF##*/}
+          hub pr checkout ${{ github.event.issue.number }}
+          echo ${GITHUB_REF#refs/heads/}
+      - name: Trigger
+        run: echo ${GITHUB_REF#refs/heads/}
+      - name: Get the current branch name
+        shell: bash
+        run: echo "::set-output name=branch::${GITHUB_REF#refs/heads/}"
+        id: myref
+      - name: Trigger
+        run: echo ${{ steps.myref.outputs.branch }}
