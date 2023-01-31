@@ -6,6 +6,7 @@ on:
 jobs:
   trigger_prototype_workflow_by_comment:
     name: Trigger Prototype Workflow by Comment
+    if: ${{ contains(github.event.issue.labels.*.name, 'prototype-workflow-integration') }}
     runs-on: ubuntu-latest
     env:
       CIRCLECI_TOKEN: ${{ secrets.CIRCLECI_TOKEN }}
