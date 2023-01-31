@@ -15,7 +15,7 @@ jobs:
     steps:
       - id: 'get-branch'
         run: |
-          asw=$(gh pr view $PR_NO --repo $REPO --json headRefName --jq '.headRefName') >> $GITHUB_BRANCH
+          GITHUB_BRANCH=$(gh pr view $PR_NO --repo $REPO --json headRefName --jq '.headRefName') >> $GITHUB_STATE
           echo ::set-output name=branch::$(gh pr view $PR_NO --repo $REPO --json headRefName --jq '.headRefName')
         env:
           REPO: ${{ github.repository }}
