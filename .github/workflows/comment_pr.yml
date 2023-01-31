@@ -16,6 +16,8 @@ jobs:
       - name: Git Checkout
         uses: actions/checkout@v2
       - name: Checkout Pull Request
-        run: hub pr checkout ${{ github.event.issue.number }}
+        run: |
+          hub pr checkout ${{ github.event.issue.number }}
+          echo ${GITHUB_REF#refs/heads/}
       - name: Trigger
-        run: echo ${GITHUB_REF##*/}
+        run: echo ${GITHUB_REF#refs/heads/}
