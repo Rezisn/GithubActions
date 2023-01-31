@@ -15,7 +15,7 @@ jobs:
     steps:
       - id: 'get-branch'
         run: |
-          GITHUB_BRANCH=$(gh pr view $PR_NO --repo $REPO --json headRefName --jq '.headRefName') >> $GITHUB_STATE
+          echo "GITHUB_BRANCH=$(gh pr view $PR_NO --repo $REPO --json headRefName --jq '.headRefName')" >> $GITHUB_ENV
           echo ::set-output name=branch::$(gh pr view $PR_NO --repo $REPO --json headRefName --jq '.headRefName')
         env:
           REPO: ${{ github.repository }}
@@ -23,5 +23,5 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Trigger3
         run: |
-          echo $GITHUB_BRANCH
+          echo ${{ env.GITHUB_BRANCH }}
           echo ${{ steps.get-branch.outputs.branch }}
