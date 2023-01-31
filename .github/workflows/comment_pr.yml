@@ -21,3 +21,9 @@ jobs:
           echo ${GITHUB_REF#refs/heads/}
       - name: Trigger
         run: echo ${GITHUB_REF#refs/heads/}
+      - name: Get the current branch name
+        shell: bash
+        run: echo "::set-output name=branch::${GITHUB_REF#refs/heads/}"
+        id: myref
+      - name: Trigger
+        run: echo ${{ steps.myref.outputs.branch }}
