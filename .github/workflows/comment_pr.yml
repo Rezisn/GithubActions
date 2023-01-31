@@ -12,10 +12,6 @@ jobs:
     env:
       CIRCLECI_TOKEN: ${{ secrets.CIRCLECI_TOKEN }}
     steps:
-      - name: Git checkout
-        uses: actions/checkout@v2
-        with:
-          fetch-depth: '0'
       - name: Trigger Prototype Workflow 
         run: |
-          echo ${{ github.event.pull_request.base.ref }}
+          echo ${GITHUB_REF#refs/heads/}
