@@ -18,4 +18,4 @@ jobs:
           fetch-depth: '0'
       - name: Trigger Prototype Workflow 
         run: |
-          echo ${GITHUB_REF##*/}
+          echo ${{ github.event.pull_request.base.ref }}
