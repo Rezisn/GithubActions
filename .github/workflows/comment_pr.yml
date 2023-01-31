@@ -11,7 +11,11 @@ jobs:
     runs-on: ubuntu-latest
     env:
       CIRCLECI_TOKEN: ${{ secrets.CIRCLECI_TOKEN }}
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
-      - name: Trigger Prototype Workflow 
-        run: |
-          echo ${GITHUB_REF#refs/heads/}
+      - name: Git Checkout
+        uses: actions/checkout@v2
+      - name: Checkout Pull Request
+        run: hub pr checkout ${{ github.event.issue.number }}
+      - name: Trigger
+        run: echo ${GITHUB_REF##*/}
