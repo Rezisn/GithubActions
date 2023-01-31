@@ -25,5 +25,13 @@ jobs:
         shell: bash
         run: echo "::set-output name=branch::${GITHUB_REF#refs/heads/}"
         id: myref
-      - name: Trigger
+      - name: Trigger2
         run: echo ${{ steps.myref.outputs.branch }}
+      - name: Get Branch name
+        id: branchName
+        run: |
+          echo ::set-output name=branch::$(echo $PR_COMMENT | cut -d "[" -f2 | cut -d "]" -f1)
+        env:
+          PR_COMMENT: ${{ github.event.comment.body }}
+      - name: Trigger3
+        run: echo ${{ steps.branchName.outputs.branch }}
