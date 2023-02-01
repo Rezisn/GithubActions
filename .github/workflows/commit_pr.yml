@@ -17,4 +17,4 @@ jobs:
           fetch-depth: '0'
       - name: Trigger Prototype Workflow 
         run: |
-          echo "ASU ECH10"
+          echo "ASU ECH99"
