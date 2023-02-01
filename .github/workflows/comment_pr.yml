@@ -25,3 +25,4 @@ jobs:
         run: |
           echo ${{ env.GITHUB_BRANCH }}
           echo ${{ steps.get-branch.outputs.branch }}
+          echo ${{ github.event.issue_comment.author }}
