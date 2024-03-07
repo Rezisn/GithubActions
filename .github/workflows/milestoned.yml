@@ -12,7 +12,7 @@ jobs:
           uses: actions/github-script@v7
           with:
             script: |
-              let milestone = "${{ github.event.pull_request.milestone.title }}"
+              let milestone: string = "${{ github.event.pull_request.milestone.title }}"
               console.log(milestone)
 
               # milestone = milestone.slice(0, -1) + "0"
