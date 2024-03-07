@@ -13,9 +13,12 @@ jobs:
           with:
             script: |
               let milestone = '${{ github.event.pull_request.milestone.title }}'.slice(0, -1) + "0"
+              const release_issue_regex = "s/.*\[\([0-9.]*\)\].*$/\1/p"
               let current_qa_versions = await github.rest.issues.listForRepo({
                 owner: context.repo.owner,
                 repo: context.repo.repo,
                 labels: "release-automation"
+              }).data.map ((release_issue) => {
+                release_issue.title.match(release_issue_regex)[1]
               })
               console.log(current_qa_versions)
