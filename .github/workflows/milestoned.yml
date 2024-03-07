@@ -11,10 +11,11 @@ jobs:
         - name: Update milestone on PRs targeting this version
           uses: actions/github-script@v7
           with:
+            github-token: ${{secrets.PERSONAL_ACCESS_TOKEN}}
             script: |
-
-              const milestone = await '${{ github.event.pull_request.milestone.title }}'.slice(0, -1) + "0"
-              console.log(milestone)
+              console.log("asu")
+              # let milestone = await '${{ github.event.pull_request.milestone.title }}'.slice(0, -1) + "0"
+              # console.log(milestone)
 
               # let current_qa_versions = await github.rest.issues.listForRepo({
               #   owner: context.repo.owner,
