@@ -13,3 +13,5 @@ jobs:
           with:
             script: |
               console.log("asu")
+              let milestone = '${{ github.event.pull_request.milestone.title }}'.slice(0, -1) + "0"
+              console.log(milestone)
