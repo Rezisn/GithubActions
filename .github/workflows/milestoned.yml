@@ -28,5 +28,5 @@ jobs:
               if (current_qa_versions.includes(base_version)) {
                 echo "Milestone is set to the QA versions"
               } else {
-                echo "Milestone is set to non QA versions"
+                echo "Milestone is set to non QA versions!"
               }
