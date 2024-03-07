@@ -12,7 +12,8 @@ jobs:
           uses: actions/github-script@v7
           with:
             script: |
-              let milestone = '${{ github.event.issue.milestone.title }}'
+              console.log("${{ github.event.issue.milestone.title }}")
+              let milestone = "${{ github.event.issue.milestone.title }}"
               console.log(milestone)
 
               milestone = milestone.slice(0, -1) + "0"
