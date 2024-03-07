@@ -12,11 +12,11 @@ jobs:
           uses: actions/github-script@v7
           with:
             script: |
-              let milestone: String = "${{ github.event.pull_request.milestone.title }}"
+              const milestone = "${{ github.event.pull_request.milestone.title }}"
               console.log(milestone)
 
-              # milestone = milestone.slice(0, -1) + "0"
-              # console.log(milestone)
+              milestone = milestone.slice(0, -1) + "0"
+              console.log(milestone)
 
               # let current_qa_versions = await github.rest.issues.listForRepo({
               #   owner: context.repo.owner,
