@@ -19,7 +19,7 @@ jobs:
               milestone = milestone.slice(0, -1) + "0"
               console.log(milestone)
 
-              let current_qa_versions = github.rest.issues.listForRepo({
+              let current_qa_versions = await github.rest.issues.listForRepo({
                 owner: context.repo.owner,
                 repo: context.repo.repo,
                 labels: "release-automation"
