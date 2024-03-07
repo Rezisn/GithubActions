@@ -12,22 +12,21 @@ jobs:
           uses: actions/github-script@v7
           with:
             script: |
-              console.log("${{ github.event.pull_request.milestone.title }}")
               let milestone = "${{ github.event.pull_request.milestone.title }}"
               console.log(milestone)
 
-              milestone = milestone.slice(0, -1) + "0"
-              console.log(milestone)
+              # milestone = milestone.slice(0, -1) + "0"
+              # console.log(milestone)
 
-              let current_qa_versions = await github.rest.issues.listForRepo({
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-                labels: "release-automation"
-              })
-              console.log(current_qa_versions)
+              # let current_qa_versions = await github.rest.issues.listForRepo({
+              #   owner: context.repo.owner,
+              #   repo: context.repo.repo,
+              #   labels: "release-automation"
+              # })
+              # console.log(current_qa_versions)
 
-              if (current_qa_versions.includes(base_version)) {
-                echo "Milestone is set to the QA versions"
-              } else {
-                echo "Milestone is set to non QA versions!"
-              }
+              # if (current_qa_versions.includes(base_version)) {
+              #   echo "Milestone is set to the QA versions"
+              # } else {
+              #   echo "Milestone is set to non QA versions!"
+              # }
