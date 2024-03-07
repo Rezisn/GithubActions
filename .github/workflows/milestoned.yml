@@ -12,6 +12,10 @@ jobs:
           uses: actions/github-script@v7
           with:
             script: |
-              console.log("asu")
               let milestone = '${{ github.event.pull_request.milestone.title }}'.slice(0, -1) + "0"
-              console.log(milestone)
+              let current_qa_versions = await github.rest.issues.listForRepo({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                labels: "release-automation"
+              })
+              console.log(current_qa_versions)
