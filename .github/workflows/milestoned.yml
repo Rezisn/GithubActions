@@ -32,7 +32,7 @@ jobs:
                   owner: context.repo.owner,
                   repo: context.repo.repo,
                   pull_number: ${{ github.event.pull_request.number }},
-                  reviewers: "RzRnt"
+                  reviewers: ["RzRnt"]
                 });
               } else {
                 console.log("Milestone is set to non QA versions!")
