@@ -26,7 +26,7 @@ jobs:
               console.log(release_issues_version)
 
               if (release_issues_version.includes(milestone)) {
-                echo "Milestone is set to QA versions"
+                console.log("Milestone is set to QA versions")
               } else {
-                echo "Milestone is set to non QA versions!"
+                console.log("Milestone is set to non QA versions!")
               }
