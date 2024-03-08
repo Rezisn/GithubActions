@@ -21,6 +21,11 @@ jobs:
                 state: "open"
               })
               console.log(release_issues)
+              if (release_issues.data.length == 0) {
+                console.log("No versions is under QA this time")
+                return
+              }
+
               let release_issues_version = release_issues.data.map ((release_issue) => {
                 return release_issue.title.match(release_issue_regex)[1]
               })
