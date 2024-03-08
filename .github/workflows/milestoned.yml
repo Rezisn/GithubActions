@@ -18,7 +18,8 @@ jobs:
                 repo: context.repo.repo,
                 labels: "release-automation"
               })
-              const release_issue_regex = /\[([0-9\.]*)\]/
               console.log(release_issues)
-              let release_issues_version = release_issues.data.map (release_issue => release_issue.title)
+              let release_issues_version = release_issues.data.map ((release_issue) => {
+                return release_issue.title.match(release_issue_regex)
+              })
               console.log(release_issues_version)
