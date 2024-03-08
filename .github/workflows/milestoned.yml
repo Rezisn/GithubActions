@@ -17,7 +17,8 @@ jobs:
               let release_issues = await github.rest.issues.listForRepo({
                 owner: context.repo.owner,
                 repo: context.repo.repo,
-                labels: "release-automation"
+                labels: "release-automation",
+                state: "open"
               })
               console.log(release_issues)
               let release_issues_version = release_issues.data.map ((release_issue) => {
@@ -27,6 +28,12 @@ jobs:
 
               if (release_issues_version.includes(milestone)) {
                 console.log("Milestone is set to QA versions")
+                await github.rest.pulls.requestReviewers({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  pull_number: github.event.pull_request.number,
+                  reviewers: "RzRnt"
+                });
               } else {
                 console.log("Milestone is set to non QA versions!")
               }
