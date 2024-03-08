@@ -13,7 +13,7 @@ jobs:
           with:
             script: |
               let milestone = '${{ github.event.pull_request.milestone.title }}'.slice(0, -1) + "0"
-              const release_issue_regex = /s\/.*\[\([0-9.]*\)\].*$/
+              const release_issue_regex = /\[([0-9\.]*)\]/
               let release_issues = await github.rest.issues.listForRepo({
                 owner: context.repo.owner,
                 repo: context.repo.repo,
