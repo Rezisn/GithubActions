@@ -21,6 +21,12 @@ jobs:
               })
               console.log(release_issues)
               let release_issues_version = release_issues.data.map ((release_issue) => {
-                return release_issue.title.match(release_issue_regex)
+                return release_issue.title.match(release_issue_regex)[1]
               })
               console.log(release_issues_version)
+
+              if (release_issues_version.includes(milestone)) {
+                echo "Milestone is set to QA versions"
+              } else {
+                echo "Milestone is set to non QA versions!"
+              }
