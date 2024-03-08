@@ -12,21 +12,33 @@ jobs:
           uses: actions/github-script@v7
           with:
             script: |
-              let milestone = '${{ github.event.issue.milestone.title }}'
-              console.log(milestone)
-
-              milestone = milestone.slice(0, -1) + "0"
-              console.log(milestone)
-
-              let current_qa_versions = github.rest.issues.listForRepo({
+              let milestone = '${{ github.event.pull_request.milestone.title }}'.slice(0, -1) + "0"
+              const release_issue_regex = /\[([0-9\.]*)\]/
+              let release_issues = await github.rest.issues.listForRepo({
                 owner: context.repo.owner,
                 repo: context.repo.repo,
-                labels: "release-automation"
+                labels: "release-automation",
+                state: "open"
               })
-              console.log(current_qa_versions)
+              console.log(release_issues)
+              if (release_issues.data.length == 0) {
+                console.log("No versions is under QA this time")
+                return
+              }
 
-              if (current_qa_versions.includes(base_version)) {
-                echo "Milestone is set to the QA versions"
+              let release_issues_version = release_issues.data.map ((release_issue) => {
+                return release_issue.title.match(release_issue_regex)[1]
+              })
+              console.log(release_issues_version)
+
+              if (release_issues_version.includes(milestone)) {
+                console.log("Milestone is set to QA versions")
+                await github.rest.pulls.requestReviewers({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  pull_number: ${{ github.event.pull_request.number }},
+                  reviewers: ["RzRnt"]
+                });
               } else {
-                echo "Milestone is set to non QA versions"
+                console.log("Milestone is set to non QA versions!")
               }
